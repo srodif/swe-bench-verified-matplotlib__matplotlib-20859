@@ -1163,3 +1163,16 @@ def test_kwargs_pass():
 
     assert fig.get_label() == 'whole Figure'
     assert sub_fig.get_label() == 'sub figure'
+
+
+def test_subfigure_legend():
+    """Test that legends can be added to SubFigures."""
+    fig = plt.figure()
+    subfig = fig.subfigures()
+    ax = subfig.subplots()
+    ax.plot([0, 1, 2], [0, 1, 2], label="test")
+    
+    # This should not raise a TypeError
+    legend = subfig.legend()
+    assert legend is not None
+    assert legend.parent is subfig
